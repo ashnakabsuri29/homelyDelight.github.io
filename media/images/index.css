@@ -1,0 +1,50 @@
+body,html {
+  height: 100%;
+}
+
+body {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  color: #5a5a5a;
+  scroll-behavior: smooth;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+.nav {
+  font-size: 18px;
+  padding: 15px;
+}
+
+footer{
+  display: block;
+}
+
+/* When you mouse over the container, fade in the overlay title */
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  /* rtl:remove */
+  letter-spacing: -.05rem;
+}
+
+.social ul{
+    list-style-type: none;
+}
+
+.social ul li{
+    display: inline;
+    padding: 1%;
+    font-weight: bold;
+}

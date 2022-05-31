@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title> Cook Dish | Homely Delight </title>
+  </head>
+  <link href="../static/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" href="../media/images/logo.png" type = "image/x-icon">
+  <script src="https://kit.fontawesome.com/80843c9447.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type = "text/css" href ="..\static\images\about.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'>
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <title>foodx</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'>
+    <!-- Font Awesome CSS -->
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .add{
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+  <nav class="navbar-expand-lg navbar-dark bg-dark fixed-top navigation-clean-search" role="navigation">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav me-auto py-2 mb-2 mb-md-0">
+        <li class="nav-item"><a class="nav-link navbar-brand active" href="/">Homely Delight <img src="..\media\images\1.png" width="30" height="25"> 
+        </a></li>
+        <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="/about">About</a></li>
+        <li class="nav-item"><a class="nav-link active" href="/contact">Contact Us</a></li>
+      </ul>
+      {% if not request.user.is_authenticated %}
+        <a class="nav-link ml-auto" href="/signup"> 
+          <button class="btn btn-success"> Sign Up <i class="bi bi-box-arrow-in-right"></i></button>  
+          </a>
+        <a class="nav-link" href="/login"><button class="btn btn-success"> Login <i class="bi bi-box-arrow-in-right"></i></button></a>
+      {% else %}
+        <a class="nav-link ml-auto" href="#"><div class="btn btn-outline-secondary text-light"> Welcome! {{cook.name}} <i class="bi bi-emoji-smile"></i></div></a>
+        <a class="nav-link" href="/foodzone"><div class="btn btn-outline-secondary text-light"> Food Zone </div></a>
+        {% if cook.role%}
+        <a class="nav-link" href="/my-dish"><div class="btn btn-outline-secondary text-light"> Cook Profile </div></a>  
+        {% endif %}
+      <a class="nav-link" href="/logout"><div class="btn btn-danger"> Log Out <i class="bi bi-box-arrow-in-down-right"></i></div></a>
+      {% endif %}
+  </div>
+</nav>
+
+<div class="container px-4 py-5">
+  <div class="jumbotron">
+  <p style="font-size: 25px;" class="lead text-center"><font color="crimson" size="28"><img src="../media/images/logo.png" width="80" height="80">
+  Hi Cook! {{cook.name}}</font> <br> Here is a section for your dishes. <br>
+  </p>
+  </div>
+</div>
+    <div class="container-fluid">
+
+        <div class="row d-flex justify-content-evenly" style='padding: 20px;'>
+            <div class="col-md-3">
+               {% comment %} <button class='btn btn-success' href='/add-dish/'>Add Dish</button> {% endcomment %}
+               <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#demo" aria-expanded="false" aria-controls="collapseExample">
+                Add Dish
+              </button>
+              
+                <div id="demo" class="collapse p-2" ><p></p>
+            
+                    <form action="/add-item/" method="post" class='form-control'>
+                        {%csrf_token%}
+                        <input class='form-control add' type="text" name='name' placeholder='Dish Name'><br>
+                        <input class='form-control add' type="text" name='price' placeholder='price'><br>
+                        <input class='form-control add' type="file" name='image' placeholder='Image Name (.PNG)'> <br>
+                        <input  type="radio" name='veg' value='1'> Veg &nbsp;&nbsp;
+                        <input  type="radio" name='veg' value='0'> Non-Veg <br>
+                        <br>
+                        <select name="flavour" class='form-control'>
+        
+                            <option value="Spicy">Spicy</option>
+                            <option value="savoury">Savoury</option>
+                            <option value="Sweet">Sweet</option>
+                            <option value="Extra Spicy">Extra Spicy</option>
+                        </select> <br>
+                        <select name="preference" class='form-control add'>
+                            <option value="Dinner">Dinner</option>
+                            <option value="Breakfast">Breakfast</option>
+                            <option value="Lunch">Lunch</option>
+                        </select> <br>
+                        <input type="radio" value='1' name='specialty' > Specialty  &nbsp;&nbsp;
+                        <input type="radio" value='0' name='specialty' > Regular
+                        <br><br>
+                        <button style="width:100px" class='btn btn-success' href='/add-item/'>Add</button><br>
+                        
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="row" >
+                    <h1> <p style="text-align: center; font-size: 30px;" class="lead text-danger">Your Dishes <i class="bi bi-balloon-heart"></i></p></h1>
+                    <hr>
+                    {% for dish in myDish%}
+                    <div class="col-md-3 d-flex align-items-stretch" style="padding: 10px;">
+                        <div class="card" style="text-align: center">
+                            <img src="/media/{{dish.img}}" class="card-img-top" alt="..." style="width: 13rem; height: 13rem;">
+                            <div class="card-body p-4">
+                              <h3 style="text-align:left;" class="lead fw-normal text-danger card-title"> {{dish.name}} </h5>
+                              <h5 style="text-align:left;" class="lead">Price : ₹{{dish.price}}</h4>
+                              <h6 style="text-align:left;" class="lead">Flavour : {{dish.flavour}}</h6>
+                              <h6 style="text-align:left;" class="lead">Timing <i class="bi bi-alarm"></i>: {{dish.preference}}</h6><br>
+                              <a style="text-align:left;" href="/dish-view/{{dish.id}}" class="btn btn-outline-secondary">View</a>
+                              <a href="/delete-dish/{{dish.id}}" class="btn btn-outline-danger">Delete</a>
+                            </div>
+                          </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+</body>
+</html>

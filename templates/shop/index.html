@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title> Homely Delight </title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link href="./static/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" href="media\images\logo.png" type = "image/x-icon">
+  <script src="https://kit.fontawesome.com/80843c9447.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type = "text/css" href ="static\images\index.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'>
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+  <body>
+    <nav class="navbar-expand-lg navbar-dark bg-dark fixed-top navigation-clean-search" role="navigation">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav me-auto py-2 mb-2 mb-md-0">
+            <li class="nav-item"><a class="nav-link navbar-brand active" href="/">Homely Delight <img src="media/images/1.png" width="30" height="25"> 
+            </a></li>
+            <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/about">About</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/contact">Contact Us</a></li>
+          </ul>
+          {% if not request.user.is_authenticated %}
+            <a class="nav-link ml-auto" href="/signup"> 
+              <button class="btn btn-success"> Sign Up <i class="bi bi-box-arrow-in-right"></i></button>  
+              </a>
+            <a class="nav-link" href="/login"><button class="btn btn-success"> Login <i class="bi bi-box-arrow-in-right"></i></button></a>
+          {% else %}
+            <a class="nav-link" href="#"><div class="btn btn-outline-secondary text-light"> Welcome!  <i class="bi bi-emoji-smile"></i></div></a>
+            <a class="nav-link" href="/foodzone"><div class="btn btn-outline-secondary text-light"> Food Zone </div></a>
+            {% if cook.role%}
+            <a class="nav-link" href="/my-dish"><div class="btn btn-outline-secondary text-light"> Cook Profile </div></a>  
+            {% endif %}
+          <a class="nav-link" href="/logout"><div class="btn btn-danger"> Log Out <i class="bi bi-box-arrow-in-down-right"></i></div></a>
+          {% endif %}
+      </div>
+    </nav>
+    
+  <div class="d-flex text-center text-white bg-dark" style="background-image: url('media/images/header-bg-1.jpg'); height: 44rem">  
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="mb-auto">
+    <div>
+      <h3 class="float-md-start mb-0 text-dark">Get your tiffin now!</h3>
+    </div>
+  </header>
+  <main class="px-3">
+    <div style="color: darkred; font-size: 50px; font-weight: 300; line-height: 1; letter-spacing: -.05rem;"><b><img src="media\images\logo.png" width="80" height="80">Homely Delight!</b></div><br>
+    <p class="lead text-dark"><b>Homely Delight is a tiffin service which looks to create unforgettable experience for you and your family.<br> We pledge to serve some exquisite food that is sure to rattle your taste buds.
+    <br>
+    At Homely  Delight we collabrate with home-chefs in your neighbourhood, to deliver you "Ghar ka khana" </b></p>
+    <p class="lead">
+      <a href="#breakfast" target="_self" class="btn btn-lg btn-outline-success">Learn more</a>
+    </p>
+  </main>
+
+  <footer class="mt-auto text-white-50">
+    <p><a href="https://getbootstrap.com/" class="text-white"></a><a href="https://twitter.com/mdo" class="text-white"></a>.</p>
+  </footer>
+</div>
+</div>
+  
+<br><br><br><br>
+    <center>  
+    <div class="row featurette" id="breakfast">
+      <div class="col-lg-12">
+        <h2 class="featurette-heading">Breakfast?! <span class="text-muted">It’ll blow your mind.</span></h2>
+        <p class="lead">Get mouth-watering healthy breakfast here, order now.</p>
+      </div>
+      
+      <div class="d-flex justify-content-evenly">
+        <img src="media/images/NR.png" alt="Dosa" height="600" class="border mr-5 p-2 border-3 border-danger">
+        <img src="media/images/p1.jpg" alt="Pineapple Sheera" height="600" class="border mr-5 p-2 border-3 border-danger">
+        <img src="media/images/R1.jpg" width="450" alt="Misal Pav" height="600" class="border p-2 border-3 border-danger"><br>
+      </div>
+    </div>
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-lg-12">
+        <h2 class="featurette-heading">Lunch?! <span class="text-muted">We got you.</span></h2>
+        <p class="lead">Flavorsome Lunch To Keep You Going</p>
+      </div>
+      
+      <div class="d-flex justify-content-center">
+        <img src="media/images/pri.jpg" alt="Chapati" height="600" class="border mr-5 p-2 border-3 border-danger">
+
+        <img src="media/images/fish1.jpg" alt="Pineapple Sheera" height="600" class="border mr-5 p-2 border-3 border-danger">
+        
+        <img src="media/images/flower1.jpg" width="450" alt="Misal Pav" height="600" class="border p-2 border-3 border-danger">
+        
+      </div>
+    </div>
+    <hr class="featurette-divider">
+
+
+    <div class="row featurette">
+      <div class="col-lg-12">
+        <h2 class="featurette-heading">Dinner?! <span class="text-muted">Delight in every bite</span></h2>
+        <p class="lead">Delicious Dinner just like your grandma used to make.</p>
+      </div>
+      
+      <div class="d-flex justify-content-evenly">
+        <img src="media/images/chapati.png" alt="Chapati" height="600" class="border mr-5 p-2 border-3 border-danger">
+
+        <img src="media/images/s1.jpg" width="450" alt="Pineapple Sheera" height="600" class="border mr-5 p-2 border-3 border-danger">
+        
+        <img src="media/images/chicken.jpg" width="450" alt="Misal Pav" height="600" class="border p-2 border-3 border-danger">
+        
+      </div>
+    </div>
+    <hr class="featurette-divider">
+
+
+    <div class="row featurette">
+      <div class="col-lg-12">
+        <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span> <i class="bi bi-emoji-wink"></i></h2>
+        <p class="lead">Want to know more? No worries. Follow us on our social-media platforms!<br>And remember the people who love to eat are the best people.</p>
+      </div>
+      <div class="align-content-center">
+        
+      </div>
+      </center>
+    </div>
+    <section class="social">
+        <div class="container text-center">
+            <ul>
+                <li>
+                    <a href="a"><img src="https://img.icons8.com/clouds/100/000000/facebook.png"/></a>
+                </li>
+                <li>
+                    <a href="a"><img src="https://img.icons8.com/clouds/100/000000/instagram-new--v2.png"/></a>
+                </li>
+                <li>
+                    <a href="a"><img src="https://img.icons8.com/clouds/100/000000/twitter.png"/></a>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="footer">
+        <div class="container text-center">
+            <p>All rights reserved. Designed By <a href="#" style="text-decoration: none">SSS</a></p>
+        </div>
+    </section>
+</body>
+</html>
